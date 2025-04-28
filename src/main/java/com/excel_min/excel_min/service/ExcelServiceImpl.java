@@ -17,7 +17,12 @@ public class ExcelServiceImpl implements ExcelService {
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при получении числовой последовательности из Excel файла: " + pathFile, e);
         }
+        if (sequenceNumber.length < nNumber) {
+            throw new IllegalArgumentException("Число N больше, чем чисел в массиве");
+        }
+
         quickSort(sequenceNumber, 0, sequenceNumber.length - 1);
+
         return sequenceNumber[nNumber - 1];
     }
 }
